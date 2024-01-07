@@ -1,25 +1,104 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
-@import url('./reset.css');
-@import url('./vite-promo.css');
-@import url('./header.css');
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+ul {
+  list-style: none;
+}
+
+.block-form {
+  padding-top: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-img {
+  height: 30px;
+  width: 200px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid gray;
+  padding-left: 15px;
+  transition: 0.3s;
+  font-family: Montserrat;
   font-size: 16px;
-  line-height: 24px;
   font-weight: 400;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+  outline: transparent;
+}
 
-  color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
+.input-img:hover {
+  border: 1px solid #000;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+.input-img:focus {
+  border: 1px solid #4e75ff;
+  color: #2e2f42;
+}
+
+.btn-search {
+  cursor: pointer;
+  display: inline-flex;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  border: 1px solid gray;
+  background: #4e75ff;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.btn-search:hover {
+  background: #6c8cff;
+  animation: animBtn 1s ease 0s infinite normal forwards;
+}
+
+/* photo */
+
+.photo-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.photo-list__item {
+  border: 1px solid rgb(52, 52, 52);
+  border-radius: 8px;
+}
+
+.photo-list__block {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.photo-list__block__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ------------------- */
+
+@keyframes animBtn {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
