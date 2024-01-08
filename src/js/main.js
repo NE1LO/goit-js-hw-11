@@ -44,7 +44,8 @@ const formSubmit = e => {
         loader.style.display = 'none';
         gallery.refresh();
       }
-    });
+    })
+    .catch(error => console.log(error));
   formEl.reset();
 };
 
