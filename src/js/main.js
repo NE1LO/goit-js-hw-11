@@ -1,57 +1,51 @@
-const render = arr => {
-  let renderHtml;
-  renderHtml = arr.reduce(
-    (HTML, item) =>
-      HTML +
-      `<li class="photo-list__item">
-        <a href="${item.largeImageURL}">
-          <img
-            width="360"
-            height="200"
-            src="${item.largeImageURL}"
-            alt="${item.tags}"
-          />
-        </a>
-        <div class="photo-list__block">
-          <div class="photo-list__block__info">
-            <p><b>Likes</b></p>
-            <p>${item.likes}</p>
-          </div>
-          <div class="photo-list__block__info">
-            <p><b>Views</b></p>
-            <p>${item.views}</p>
-          </div>
-          <div class="photo-list__block__info">
-            <p><b>Comments</b></p>
-            <p>${item.comments}</p>
-          </div>
-          <div class="photo-list__block__info">
-            <p><b>Download</b></p>
-            <p>${item.downloads}</p>
-          </div>
-        </div>
-      </li>`,
-    ''
-  );
+import { render } from './render';
+import SimpleLightbox from 'simplelightbox';
+// Додатковий імпорт стилів
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
-  return renderHtml;
-};
-
-const listRender = document.querySelector('.photo-list');
 const API_KEY = '41690622-1f4c10e5fb0aefa04cb32f231';
 const BASE_URL = 'https://pixabay.com/api/';
+const listRender = document.querySelector('.photo-list');
+const formEl = document.querySelector('.form');
+const loader = document.querySelector('.loader');
+const gallery = new SimpleLightbox('.photo-list a');
 
-const option = new URLSearchParams({
-  key: API_KEY,
-  image_type: 'photo',
-  q: 'dog',
-  orientation: 'horizontal',
-  safesearch: true,
-});
+const formSubmit = e => {
+  e.preventDefault();
+  if (listRender.children.length > 0) {
+    listRender.innerHTML = '';
+  }
 
-fetch(`${BASE_URL}?${option}`)
-  .then(response => response.json())
-  .then(json => {
-    console.log(json.hits);
-    listRender.insertAdjacentHTML('afterbegin', render(json.hits));
+  loader.style.display = 'inline-block';
+
+  const option = new URLSearchParams({
+    key: API_KEY,
+    image_type: 'photo',
+    q: formEl.search.value,
+    orientation: 'horizontal',
+    safesearch: true,
   });
+  fetch(`${BASE_URL}?${option}`)
+    .then(response => {
+      return response.json();
+    })
+    .then(json => {
+      if (json.hits < 1) {
+        iziToast.error({
+          message:
+            'Sorry, there are no images matching your search query. Please try again!',
+          position: 'topRight',
+        });
+        loader.style.display = 'none';
+      } else {
+        listRender.innerHTML = render(json.hits);
+        loader.style.display = 'none';
+        gallery.refresh();
+      }
+    });
+  formEl.reset();
+};
+
+formEl.addEventListener('submit', formSubmit);
