@@ -2,30 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vanilla-app-template/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/goit-js-hw-11/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla App Template</title>
     
-    <script type="module" crossorigin src="/vanilla-app-template/commonHelpers.js"></script>
-    <link rel="stylesheet" href="/vanilla-app-template/assets/index-da54d998.css">
+    <script type="module" crossorigin src="/goit-js-hw-11/commonHelpers.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-9310f15c.js">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/vendor-fd638ea2.css">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-fc1cabe7.css">
   </head>
   <body>
     <div class="block-form">
-      <form>
+      <form class="form">
         <input
           class="input-img"
-          name="img"
+          name="search"
           type="text"
           placeholder="Search images..."
         />
+        <button class="btn-search" type="submit">Search</button>
       </form>
-      <button class="btn-search" type="submit">Search</button>
     </div>
 
-    <div>
+    <div class="block-photo">
+      <span class="loader"></span>
       <ul class="photo-list"></ul>
     </div>
-    <script src="./js/render.js"></script>
+    
     
   </body>
 </html>
