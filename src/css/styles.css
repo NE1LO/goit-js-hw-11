@@ -2,6 +2,9 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  background-color: #2b2b2b;
+  font-family: Montserrat;
+  font-weight: 100;
 }
 
 ul {
@@ -33,12 +36,11 @@ ul {
 }
 
 .input-img:hover {
-  border: 1px solid #000;
+  border: 1px solid #ffffff;
 }
 
 .input-img:focus {
   border: 1px solid #4e75ff;
-  color: #2e2f42;
 }
 
 .btn-search {
@@ -70,14 +72,22 @@ ul {
 }
 
 .photo-list__item {
-  border: 1px solid rgb(52, 52, 52);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid gray;
   border-radius: 8px;
 }
 
 .photo-list__block {
+  width: 100%;
   display: flex;
   justify-content: center;
-  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  background-color: rgba(128, 128, 128, 0.942);
 }
 
 .photo-list__block__info {
