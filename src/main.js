@@ -1,4 +1,4 @@
-import { render } from './render';
+import { render } from './js/render';
 import SimpleLightbox from 'simplelightbox';
 // Додатковий імпорт стилів
 import 'simplelightbox/dist/simple-lightbox.min.css';
