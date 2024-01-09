@@ -32,7 +32,7 @@ const formSubmit = e => {
       return response.json();
     })
     .then(json => {
-      if (json.hits < 1) {
+      if (json.hits.length === 0) {
         iziToast.error({
           message:
             'Sorry, there are no images matching your search query. Please try again!',
@@ -45,7 +45,12 @@ const formSubmit = e => {
         gallery.refresh();
       }
     })
-    .catch(error => console.log(error));
+    .catch(err =>
+      iziToast.error({
+        message: 'error server',
+        position: 'topRight',
+      })
+    );
   formEl.reset();
 };
 
